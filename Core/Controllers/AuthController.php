@@ -1,26 +1,20 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Core\Controllers;
 
 use App\Core\Request;
 use App\Core\Controllers\Controller;
-use App\Core\Middlewares\AuthMiddleware;
+use App\Core\Middlewares\GuestMiddleware;
 use App\Core\Response;
 
-class AuthController extends Controller
+abstract class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware());
+        $this->registerMiddleware(new GuestMiddleware(['login', 'register']));
     }
 
-    public function login(Request $request, Response $response)
-    {
-        //
-    }
+    abstract public function login(Request $request, Response $response);
 
-    public function register(Request $request, Response $response)
-    {
-        //
-    }
+    abstract public function register(Request $request, Response $response);
 }

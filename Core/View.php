@@ -26,6 +26,7 @@ class View
     public function setTitle(string $title)
     {
         $this->title = $title;
+        return $this;
     }
 
     private function loadLayout(): string
