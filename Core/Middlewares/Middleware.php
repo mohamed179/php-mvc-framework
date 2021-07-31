@@ -2,7 +2,7 @@
 
 namespace App\Core\Middlewares;
 
-class Middleware
+abstract class Middleware
 {
-    //
+    public abstract function execute();
 }

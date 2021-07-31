@@ -11,6 +11,7 @@ class Application
     public Request $request;
     public Response $response;
     public Router $router;
+    public Controller $controller;
 
     public function __construct(string $rootDir, array $config)
     {

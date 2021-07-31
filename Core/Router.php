@@ -40,6 +40,18 @@ class Router
             throw new NotFoundException();
         }
 
+        if (is_array($callback)) {
+            $controller = new $callback[0]();
+            $callback[0] = $controller;
+            Application::$app->controller = $controller;
+
+            // executing controller middlewares
+            $middlewares = $controller->getMiddlewares() ?? [];
+            foreach ($middlewares as $middleware) {
+                $middleware->execute();
+            }
+        }
+
         return call_user_func_array($callback, [
             'request' => $this->request,
             'response' => $this->response

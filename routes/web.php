@@ -1,15 +1,10 @@
 <?php
 
+use App\Controllers\SiteController;
 use App\Core\View;
 
-$app->router->get('/', function () {
-    return new View('home');
-});
+$app->router->get('/', [SiteController::class, 'home']);
 
-$app->router->get('/contact', function () {
-    return new View('contact');
-});
+$app->router->get('/contact', [SiteController::class, 'contact']);
 
-$app->router->get('/about', function () {
-    return new View('about');
-});
+$app->router->get('/about', [SiteController::class, 'about']);
