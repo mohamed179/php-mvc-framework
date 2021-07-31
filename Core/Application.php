@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Core\Controllers\Controller;
+
 class Application
 {
     public static $ROOT_DIR;
@@ -12,6 +14,7 @@ class Application
     public Response $response;
     public Router $router;
     public Controller $controller;
+    public Authentication $auth;
 
     public function __construct(string $rootDir, array $config)
     {
@@ -22,6 +25,7 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
+        $this->auth = new Authentication();
     }
 
     public function run()

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\View;
-use App\Core\Controller;
+use App\Core\Controllers\Controller;
 
 class SiteController extends Controller
 {

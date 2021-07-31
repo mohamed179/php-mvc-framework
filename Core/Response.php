@@ -13,4 +13,9 @@ class Response
     {
         header("$name: $value", $replace, $code);
     }
+
+    public function redirect(string $url)
+    {
+        header('Location: ' . $url);
+    }
 }

@@ -4,5 +4,5 @@ namespace App\Core\Middlewares;
 
 abstract class Middleware
 {
-    public abstract function execute();
+    public abstract function execute(): bool;
 }
