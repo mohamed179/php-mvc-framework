@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Controllers\Controller;
+use App\Core\Database\Database;
 
 class Application
 {
@@ -15,6 +16,7 @@ class Application
     public Router $router;
     public Controller $controller;
     public Authentication $auth;
+    public Database $db;
 
     public function __construct(string $rootDir, array $config)
     {
@@ -26,6 +28,7 @@ class Application
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
         $this->auth = new Authentication();
+        $this->db = new Database($config['db']);
     }
 
     public function run()

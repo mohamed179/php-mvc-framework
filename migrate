@@ -26,4 +26,5 @@ $config = [
 // Creating new application
 $app = new Application(__DIR__, $config);
 
-// TODO: build your cli
+// Run migrations
+$app->db->runMigrations();
