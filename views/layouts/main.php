@@ -1,3 +1,9 @@
+<?php
+
+use App\Core\Application;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,14 +37,24 @@
                     <a class="nav-link" href="/about">About</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-            </ul>
+            <?php if (Application::$app->auth->isGuest()) : ?>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                </ul>
+            <?php else : ?>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <form method="POST" action="/logout" class="form-inline">
+                            <button type="submit" class="btn">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            <?php endif ?>
         </div>
     </nav>
     <div class="container">

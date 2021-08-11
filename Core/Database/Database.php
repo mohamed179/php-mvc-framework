@@ -34,7 +34,18 @@ class Database
 
     public function execute($params = null)
     {
-        $this->stmt->execute($params);
+        return $this->stmt->execute($params);
+    }
+
+    public function bindParam(
+        $param,
+        &$var,
+        $type = \PDO::PARAM_STR,
+        $maxLength = null,
+        $driverOptions = null
+    )
+    {
+        return $this->stmt->bindParam($param, $var, $type, $maxLength, $driverOptions);
     }
 
     public function fetch(
@@ -59,6 +70,11 @@ class Database
     public function fetchObject($class = "stdClass", array $ctorArgs = [])
     {
         return $this->stmt->fetchObject($class, $ctorArgs);
+    }
+
+    public function lastInsertId($name = null)
+    {
+        return $this->pdo->lastInsertId();
     }
 
     protected function createMigrationsTable()

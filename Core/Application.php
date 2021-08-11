@@ -11,6 +11,7 @@ class Application
     public static $app;
 
     public array $config;
+    public Session $session;
     public Request $request;
     public Response $response;
     public Router $router;
@@ -24,11 +25,12 @@ class Application
         Application::$app = $this;
 
         $this->config = $config;
+        $this->session = new Session();
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
-        $this->auth = new Authentication();
         $this->db = new Database($config['db']);
+        $this->auth = new Authentication();
     }
 
     public function run()

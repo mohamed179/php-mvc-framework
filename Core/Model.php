@@ -55,6 +55,11 @@ abstract class Model
         }
     }
 
+    public function setError(string $attribute, string $errorMessage)
+    {
+        $this->errors[$attribute][] = $errorMessage;
+    }
+
     public function validate(): bool
     {
         foreach ($this->rules() as $attribute => $rules) {
@@ -87,7 +92,7 @@ abstract class Model
         foreach ($params as $key => $value) {
             $errorMessage = str_replace("{{$key}}", $value, $errorMessage);
         }
-        $this->errors[$attribute][] = $errorMessage;
+        $this->setError($attribute, $errorMessage);
     }
 
     private function validateRequired(string $attribute)

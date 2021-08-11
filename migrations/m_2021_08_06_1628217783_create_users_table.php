@@ -10,7 +10,7 @@ class m_2021_08_06_1628217783_create_users_table
             id INT AUTO_INCREMENT PRIMARY KEY,
             firstname VARCHAR(255) NOT NULL,
             lastname VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
             password VARCHAR(512) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );");
