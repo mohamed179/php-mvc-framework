@@ -47,7 +47,13 @@ use App\Core\Application;
                     </li>
                 </ul>
             <?php else : ?>
+                <?php $user = Application::$app->auth->user;?>
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">
+                            <?= $user->firstname.' '.$user->lastname ?>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <form method="POST" action="/logout" class="form-inline">
                             <button type="submit" class="btn">Logout</button>
