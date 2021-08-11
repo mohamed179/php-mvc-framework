@@ -52,6 +52,7 @@ class AuthController extends BaseAuthController
         if ($request->isPost()) {
             $user->loadData($request->getRequestBody());
             if ($user->validate() && $user->save()) {
+                Application::$app->session->setFlash('success', 'You have registerd successfuly');
                 return $response->redirect('/login');
             }
         }

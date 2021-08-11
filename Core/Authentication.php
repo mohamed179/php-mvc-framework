@@ -11,7 +11,7 @@ class Authentication
 
     public function __construct()
     {
-        if (Application::$app->session->isSet('user_id')) {
+        if (Application::$app->session->has('user_id')) {
             $userClass = Application::$app->config['userClass'];
             $userId = Application::$app->session->get('user_id');
             $this->user = $userClass::find($userId);

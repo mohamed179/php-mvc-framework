@@ -58,6 +58,11 @@ use App\Core\Application;
         </div>
     </nav>
     <div class="container">
+        <?php if (Application::$app->session->hasFlash('success')): ?>
+        <div class="alert alert-success">
+            <?= Application::$app->session->getFlash('success') ?>
+        </div>
+        <?php endif ?>
         {{content}}
     </div>
 
