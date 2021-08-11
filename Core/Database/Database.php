@@ -3,6 +3,7 @@
 namespace App\Core\Database;
 
 use App\Core\Application;
+use App\Core\Logger\Logger;
 
 class Database
 {
@@ -125,12 +126,14 @@ class Database
                 try {
                     include_once Application::$ROOT_DIR.'/migrations/'.$file;
                     $className = $pathParts['filename'];
-                    echo 'Applying migration: ' . $file . PHP_EOL;
+                    Application::$app->logger->log('console', Logger::LEVEL_INFO, 'Applying migration: ' . $file);
                     (new $className())->up();
-                    echo 'Applied migration: ' . $file . PHP_EOL;
+                    Application::$app->logger->log('console', Logger::LEVEL_INFO, 'Applied migration: ' . $file);
                     $newMigrations[] = $file;
                 } catch (\Exception $ex) {
-                    echo $ex;
+                    // Log the exception
+                    Application::$app->logger->log('console', Logger::LEVEL_ERROR, $ex);
+                    Application::$app->logger->log('errors', Logger::LEVEL_ERROR, $ex);
                 }
             }
         }
@@ -139,8 +142,8 @@ class Database
         if (!empty($newMigrations)) {
             $this->saveMigrations($newMigrations);
         } else {
-            // Log the all migrations have been migrated
-            echo 'All migrations have been applied' . PHP_EOL;
+            // Log that all migrations have been migrated
+            Application::$app->logger->log('console', Logger::LEVEL_INFO, 'All migrations have been applied');
         }
     }
 }

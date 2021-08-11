@@ -6,7 +6,7 @@
 include_once './vendor/autoload.php';
 
 use Dotenv\Dotenv;
-use App\Core\Application;
+use App\Core\CLIApplication;
 
 // Getting env variables from .env file
 $dotenv = Dotenv::createImmutable(__DIR__);
@@ -25,6 +25,6 @@ $config = [
 ];
 
 // Creating new application
-$app = new Application(__DIR__, $config);
+$app = new CLIApplication(__DIR__, $config);
 
 // TODO: build your cli

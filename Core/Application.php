@@ -4,6 +4,11 @@ namespace App\Core;
 
 use App\Core\Controllers\Controller;
 use App\Core\Database\Database;
+use App\Core\Logger\ConsoleChannel;
+use App\Core\Logger\ErrorLogChannel;
+use App\Core\Logger\Logger;
+use App\Core\Logger\RotatingFileChannel;
+use App\Core\Logger\StreamChannel;
 
 class Application
 {
@@ -11,6 +16,7 @@ class Application
     public static $app;
 
     public array $config;
+    public Logger $logger;
     public Session $session;
     public Request $request;
     public Response $response;
@@ -24,8 +30,18 @@ class Application
         Application::$ROOT_DIR = $rootDir;
         Application::$app = $this;
 
+        // Setting config and session
         $this->config = $config;
         $this->session = new Session();
+
+        // Setting logger
+        $this->logger = new Logger(self::$ROOT_DIR.'/runtime/logs');
+        $this->logger->addChannel(new StreamChannel('default', 'default.log'));
+        $this->logger->addChannel(new ConsoleChannel('console'));
+        $this->logger->addChannel(new RotatingFileChannel('daily', 'daily.log'));
+        $this->logger->addChannel(new ErrorLogChannel('errors'));
+
+        // Setting request, response, router, database connnection and authentication
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
@@ -43,6 +59,7 @@ class Application
                 'message' => $ex->getMessage(),
                 'trace' => $ex->getTraceAsString()
             ]);
+            $this->logger->log('errors', Logger::LEVEL_ERROR, $ex);
         }
     }
 }
