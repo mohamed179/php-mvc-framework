@@ -2,8 +2,11 @@
 
 namespace App\Core\Database;
 
+use Exception;
+use App\Core\View;
 use App\Core\Application;
 use App\Core\Logger\Logger;
+use PDOException;
 
 class Database
 {
@@ -21,11 +24,22 @@ class Database
 
         $dsn = "mysql:host=$host;port=$port;dbname=$database";
         $this->pdo = new \PDO($dsn, $user, $password, $options);
+        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
     public function exec(string $query)
     {
-        return $this->pdo->exec($query);
+        try {
+            return $this->pdo->exec($query);
+        } catch (PDOException $ex) {
+            Application::$app->response->setResponseCode(500);
+            echo new View('errors/_error', [
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTraceAsString()
+            ]);
+            Application::$app->logger->log('errors', Logger::LEVEL_ERROR, $ex);
+            die();
+        }
     }
 
     public function prepare($query, array $options = [])
@@ -35,7 +49,17 @@ class Database
 
     public function execute($params = null)
     {
-        return $this->stmt->execute($params);
+        try {
+            return $this->stmt->execute($params);
+        } catch (PDOException $ex) {
+            Application::$app->response->setResponseCode(500);
+            echo new View('errors/_error', [
+                'message' => $ex->getMessage(),
+                'trace' => $ex->getTraceAsString()
+            ]);
+            Application::$app->logger->log('errors', Logger::LEVEL_ERROR, $ex);
+            die();
+        }
     }
 
     public function bindParam(
