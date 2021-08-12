@@ -2,13 +2,14 @@
 
 namespace App\Core;
 
-use App\Core\Controllers\Controller;
-use App\Core\Database\Database;
-use App\Core\Logger\ConsoleChannel;
-use App\Core\Logger\ErrorLogChannel;
 use App\Core\Logger\Logger;
-use App\Core\Logger\RotatingFileChannel;
+use App\Core\Database\Database;
+use App\Core\Exceptions\Exception;
 use App\Core\Logger\StreamChannel;
+use App\Core\Logger\ConsoleChannel;
+use App\Core\Controllers\Controller;
+use App\Core\Logger\ErrorLogChannel;
+use App\Core\Logger\RotatingFileChannel;
 
 class Application
 {
@@ -53,8 +54,8 @@ class Application
     {
         try {
             echo $this->router->resolve();
-        } catch(\Exception $ex) {
-            $this->response->setResponseCode($ex->getCode());
+        } catch(Exception $ex) {
+            $this->response->setResponseCode($ex->getResponseCode());
             echo new View('errors/_error', [
                 'message' => $ex->getMessage(),
                 'trace' => $ex->getTraceAsString()

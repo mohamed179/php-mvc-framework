@@ -5,6 +5,7 @@ namespace App\Core\Database;
 use Exception;
 use App\Core\View;
 use App\Core\Application;
+use App\Core\Exceptions\DatabaseException;
 use App\Core\Logger\Logger;
 use PDOException;
 
@@ -32,13 +33,7 @@ class Database
         try {
             return $this->pdo->exec($query);
         } catch (PDOException $ex) {
-            Application::$app->response->setResponseCode(500);
-            echo new View('errors/_error', [
-                'message' => $ex->getMessage(),
-                'trace' => $ex->getTraceAsString()
-            ]);
-            Application::$app->logger->log('errors', Logger::LEVEL_ERROR, $ex);
-            die();
+            throw new DatabaseException($ex->getMessage(), null, $ex);
         }
     }
 
@@ -52,13 +47,7 @@ class Database
         try {
             return $this->stmt->execute($params);
         } catch (PDOException $ex) {
-            Application::$app->response->setResponseCode(500);
-            echo new View('errors/_error', [
-                'message' => $ex->getMessage(),
-                'trace' => $ex->getTraceAsString()
-            ]);
-            Application::$app->logger->log('errors', Logger::LEVEL_ERROR, $ex);
-            die();
+            throw new DatabaseException($ex->getMessage(), null, $ex);
         }
     }
 

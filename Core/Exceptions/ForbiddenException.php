@@ -2,8 +2,8 @@
 
 namespace App\Core\Exceptions;
 
-class ForbiddenException extends \Exception
+class ForbiddenException extends Exception
 {
-    protected $code = 403;
+    protected int $responseCode = 403;
     protected $message = 'Forbidden Page';
 }
