@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\Application;
+use Mohamed179\Core\Application;
 
 class m_2021_08_06_1628221301_add_status_column_to_users_table
 {

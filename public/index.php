@@ -4,7 +4,7 @@
 include_once dirname(__DIR__).'/vendor/autoload.php';
 
 use Dotenv\Dotenv;
-use App\Core\Application;
+use Mohamed179\Core\Application;
 
 // Getting env variables from .env file
 $dotenv = Dotenv::createImmutable(dirname(__DIR__));

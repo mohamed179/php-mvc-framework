@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\Forms\Form;
+use Mohamed179\Core\Forms\Form;
 
 /**
  * @var $model \App\Models\LoginModel

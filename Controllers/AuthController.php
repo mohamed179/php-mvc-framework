@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Core\Application;
-use App\Core\View;
+use Mohamed179\Core\Application;
+use Mohamed179\Core\View;
 use App\Models\User;
 use App\Models\LoginModel;
-use App\Core\Request;
-use App\Core\Response;
-use App\Core\Controllers\AuthController as BaseAuthController;
-use App\Core\Middlewares\AuthMiddleware;
-use App\Core\Middlewares\GuestMiddleware;
+use Mohamed179\Core\Request;
+use Mohamed179\Core\Response;
+use Mohamed179\Core\Controllers\AuthController as BaseAuthController;
+use Mohamed179\Core\Middlewares\AuthMiddleware;
+use Mohamed179\Core\Middlewares\GuestMiddleware;
 
 class AuthController extends BaseAuthController
 {

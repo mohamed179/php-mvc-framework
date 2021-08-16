@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Core\Application;
-use App\Core\Controllers\Controller;
-use App\Core\Middlewares\AuthMiddleware;
-use App\Core\View;
+use Mohamed179\Core\Application;
+use Mohamed179\Core\Controllers\Controller;
+use Mohamed179\Core\Middlewares\AuthMiddleware;
+use Mohamed179\Core\View;
 
 class ProfileController extends Controller
 {

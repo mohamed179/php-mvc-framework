@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\Application;
+use Mohamed179\Core\Application;
 
 ?>
 

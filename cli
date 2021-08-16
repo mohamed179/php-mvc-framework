@@ -5,9 +5,9 @@
 // Applying composer autoload
 include_once './vendor/autoload.php';
 
-use App\Core\CLI\CLI;
+use Mohamed179\Core\CLI\CLI;
 use Dotenv\Dotenv;
-use App\Core\CLIApplication;
+use Mohamed179\Core\CLIApplication;
 
 // Getting env variables from .env file
 $dotenv = Dotenv::createImmutable(__DIR__);

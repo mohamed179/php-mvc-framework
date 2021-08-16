@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c38447daab6919a7dd33404f51c14c2d",
+    "content-hash": "a736ad418a291d0d3abde769e05b4502",
     "packages": [
         {
             "name": "adhocore/cli",
@@ -137,6 +137,48 @@
                 }
             ],
             "time": "2020-04-13T13:17:36+00:00"
+        },
+        {
+            "name": "mohamed179/php-mvc-core",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mohamed179/php-mvc-core.git",
+                "reference": "49669b6f25d76b65b766708bf32c462c2a8c167a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mohamed179/php-mvc-core/zipball/49669b6f25d76b65b766708bf32c462c2a8c167a",
+                "reference": "49669b6f25d76b65b766708bf32c462c2a8c167a",
+                "shasum": ""
+            },
+            "require": {
+                "adhocore/cli": "^0.9.0",
+                "monolog/monolog": "^2.3",
+                "vlucas/phpdotenv": "^5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mohamed179\\Core\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mohamed179",
+                    "email": "mohamed77zaki@gmail.com"
+                }
+            ],
+            "description": "PHP Framework from scratch Core files",
+            "support": {
+                "issues": "https://github.com/mohamed179/php-mvc-core/issues",
+                "source": "https://github.com/mohamed179/php-mvc-core/tree/v1.0.0"
+            },
+            "time": "2021-08-16T22:01:41+00:00"
         },
         {
             "name": "monolog/monolog",
