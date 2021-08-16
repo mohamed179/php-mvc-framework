@@ -34,6 +34,28 @@ class Logger
         return true;
     }
 
+    public function enableChannel(string $channelName): bool
+    {
+        $channel = $this->channels[$channelName] ?? null;
+
+        if (is_null($channel)) {
+            return false;
+        }
+
+        return $channel->enable();
+    }
+
+    public function disableChannel(string $channelName): bool
+    {
+        $channel = $this->channels[$channelName] ?? null;
+
+        if (is_null($channel)) {
+            return false;
+        }
+
+        return $channel->disable();
+    }
+
     public function log(string $channelName, string $level, string $message): bool
     {
         $channel = $this->channels[$channelName] ?? null;

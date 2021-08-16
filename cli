@@ -5,6 +5,7 @@
 // Applying composer autoload
 include_once './vendor/autoload.php';
 
+use App\Core\CLI\CLI;
 use Dotenv\Dotenv;
 use App\Core\CLIApplication;
 
@@ -27,4 +28,6 @@ $config = [
 // Creating new application
 $app = new CLIApplication(__DIR__, $config);
 
-// TODO: build your cli
+// Running the cli
+$cli = new CLI();
+$cli->run($_SERVER['argv']);

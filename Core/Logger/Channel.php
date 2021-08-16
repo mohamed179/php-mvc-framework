@@ -8,12 +8,14 @@ abstract class Channel
 {
     protected string $channelName;
     protected MonologLogger $monologLogger;
+    protected bool $enabled;
 
     public function __construct(string $channelName)
     {
         $this->channelName = $channelName;
         $this->monologLogger = new MonologLogger($channelName);
         $this->setMonologLoggerHandlers();
+        $this->enabled = true;
     }
 
     public abstract function setMonologLoggerHandlers();
@@ -23,8 +25,24 @@ abstract class Channel
         return $this->channelName;
     }
 
+    public function enable(): bool
+    {
+        $this->enabled = true;
+        return true;
+    }
+
+    public function disable(): bool
+    {
+        $this->enabled = false;
+        return true;
+    }
+
     public function log(string $level, string $message): bool
     {
+        if (!$this->enabled) {
+            return false;
+        }
+
         switch($level) {
             case Logger::LEVEL_DEBUG:
                 $this->monologLogger->debug($message);
